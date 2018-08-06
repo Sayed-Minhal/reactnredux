@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import PostUI from './PostUI';
+import { connect } from "react-redux";
+import fetchPosts from "../actions/postActions";
 
 class Posts extends Component {
     users;
 
-    constructor(props){
-        super(props);
-        this.state={users:[]}
-    }
-
     componentWillMount(){
-        fetch('http://jsonplaceholder.typicode.com/users')
-            .then(res => res.json())
-            .then(data => this.setState({users:data}))
+        this.props.fetchPosts();
     }
 
 
@@ -24,11 +19,11 @@ class Posts extends Component {
           <hr/>
           <br/>
         {/* <h2>Ya Ali Madad</h2> */}
-        {this.state.users.map(user => <div key={user.id}>{ user.name }</div>)}
+        {this.props.users.map(user => <div key={user.id}>{ user.name }</div>)}
       </div>
     )
   }
 }
  
-
-export default Posts;
+const mapStateToProps= state =>({ users: state.posts.items});
+export default connect(mapStateToProps, { fetchPosts })(Posts);

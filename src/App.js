@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
+import {Provider} from "react-redux";
+
+import store from "./store"
 
 
 import Posts from './components/posts';
@@ -11,9 +14,11 @@ import Posts from './components/posts';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Posts/>
-      </div>
+      <Provider store={ store }>
+        <div className="App">
+          <Posts/>
+        </div>
+      </Provider>
     );
   }
 }
