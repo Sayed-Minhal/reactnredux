@@ -24,11 +24,7 @@ class Posts extends Component {
     return (
       <div>
           <PostUI/>
-          <br/>
-          <hr/>
-          <br/>
         {/* <h2>Ya Ali Madad</h2> */}
-        { this.props.posts.map( user => JSON.stringify(user) )}
         {this.props.posts.map(user => <div key={user.id}>{ user.name }</div>)}
       </div>
     )
